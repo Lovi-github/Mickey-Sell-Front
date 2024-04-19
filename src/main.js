@@ -100,7 +100,8 @@ Vue.component(MyRegister.name, MyRegister);
 
 
 Vue.config.productionTip = false;
-
+import VueLazyLoad from 'vue-lazyload'
+Vue.use(VueLazyLoad)
 new Vue({
   router,
   store,

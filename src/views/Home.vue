@@ -32,10 +32,10 @@
             <div class="promo-list">
               <ul>
                 <li>
-                  <img src="http://localhost:3000/admin/show_images/9bf44e32-1179-49c7-ae78-ee7e2c6b6c3b.png" />
+                  <img v-lazy="imgUrl1" />
                 </li>
                 <li>
-                  <img src="http://localhost:3000/admin/show_images/7ec506bd-b03e-4480-ac46-6ea604e56e22.png" />
+                  <img v-lazy="imgUrl2" />
                 </li>
               </ul>
             </div>
@@ -63,10 +63,10 @@
             <div class="promo-list">
               <ul>
                 <li>
-                  <img src="http://localhost:3000/admin/show_images/3edd4116-4ffa-4c20-ba29-8bab58dbc397.png" />
+                  <img v-lazy="imgUrl3" />
                 </li>
                 <li>
-                  <img src="http://localhost:3000/admin/show_images/97b73009-9ff1-4b9b-b199-561ddd0c1ec9.png" />
+                  <img v-lazy="imgUrl4" />
                 </li>
               </ul>
             </div>
@@ -94,10 +94,10 @@
             <div class="promo-list">
               <ul>
                 <li>
-                  <img src="http://localhost:3000/admin/show_images/ae442645-a810-46aa-a023-ce60ab085515.png" alt />
+                  <img v-lazy="imgUrl5" alt />
                 </li>
                 <li>
-                  <img src="http://localhost:3000/admin/show_images/16c9946c-9a88-4b45-8ea1-fbec5294b618.png" alt />
+                  <img v-lazy="imgUrl6" alt />
                 </li>
               </ul>
             </div>
@@ -144,6 +144,13 @@ export default {
       applianceActive: 1, // 谷物当前选中的商品分类
       applianceActive1: 1, // 甜品当前选中的商品分类
       accessoryActive: 1, // 小食当前选中的商品分类
+
+      imgUrl1: "http://localhost:3000/admin/show_images/9bf44e32-1179-49c7-ae78-ee7e2c6b6c3b.png",
+      imgUrl2: "http://localhost:3000/admin/show_images/7ec506bd-b03e-4480-ac46-6ea604e56e22.png",
+      imgUrl3: "http://localhost:3000/admin/show_images/3edd4116-4ffa-4c20-ba29-8bab58dbc397.png",
+      imgUrl4: "http://localhost:3000/admin/show_images/97b73009-9ff1-4b9b-b199-561ddd0c1ec9.png",
+      imgUrl5: "http://localhost:3000/admin/show_images/ae442645-a810-46aa-a023-ce60ab085515.png",
+      imgUrl6: "http://localhost:3000/admin/show_images/16c9946c-9a88-4b45-8ea1-fbec5294b618.png",
     };
   },
   watch: {
@@ -182,7 +189,6 @@ export default {
       // 所以在切换商品列表时判断applianceHotList是否为空,为空则是第一次切换,把applianceList赋值给applianceHotList
       if (this.applianceHotList == "") {
         this.applianceHotList = this.applianceList;
-        console.log("查看一下applianceList是什么东西："+this.applianceList)
       }
       if (val == 1) {
         // 1为热门商品
@@ -197,6 +203,8 @@ export default {
       if (val == 3) {
         // 坚果研磨所
         this.applianceList = this.Potato_chip_Nut;
+        console.log("===坚果研磨所的applianceList===")
+        console.log(this.applianceList)
         return;
       }
       if (val == 4) {
