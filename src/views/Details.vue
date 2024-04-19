@@ -27,24 +27,25 @@
       <div class="block">
         <el-carousel height="560px" v-if="productPicture.length>1">
           <el-carousel-item v-for="item in productPicture" :key="item.id">
-            <img style="height:560px;" :src="item.product_picture.includes('http:')?item.product_picture:$target + item.product_picture" :alt="item.intro" />
+            <img style="height:auto;width:100%;object-fit: cover;" :src="item.product_picture.includes('http')?item.product_picture:$target + item.product_picture" :alt="item.intro" />
           </el-carousel-item>
         </el-carousel>
+        <!--当轮播图只有一张的时候，就不是轮播图了，这个时候商品就静止不动就好    -->
         <div v-if="productPicture.length==1">
           <img
-            style="height:560px;"
-            :src="productPicture[0].product_picture.includes('http:')?productPicture[0].product_picture:$target + productPicture[0].product_picture"
+            style="height:100%;width:100%;object-fit: cover;"
+            :src="productPicture[0].product_picture.includes('http')?productPicture[0].product_picture:$target + productPicture[0].product_picture"
             :alt="productPicture[0].intro"
           />
         </div>
       </div>
-      <!-- 左侧商品轮播图END -->
+      <!-- 左侧商品END -->
 
       <!-- 右侧内容区 -->
       <div class="content">
         <h1 class="name">{{productDetails.product_name}}</h1>
         <p class="intro">{{productDetails.product_intro}}</p>
-        <p class="store">小米自营</p>
+        <p class="store">Mickey自营</p>
         <div class="price">
           <span>{{productDetails.product_selling_price}}元</span>
           <span
@@ -72,10 +73,10 @@
         <div class="pro-policy">
           <ul>
             <li>
-              <i class="el-icon-circle-check"></i> 小米自营
+              <i class="el-icon-circle-check"></i> Mickey自营
             </li>
             <li>
-              <i class="el-icon-circle-check"></i> 小米发货
+              <i class="el-icon-circle-check"></i> Mickey发货
             </li>
             <li>
               <i class="el-icon-circle-check"></i> 7天无理由退货
@@ -278,7 +279,7 @@ export default {
 }
 #details .main .content .intro {
   color: #b0b0b0;
-  padding-top: 10px;
+  padding-top: 37px;
 }
 #details .main .content .store {
   color: #ff6700;
@@ -351,5 +352,4 @@ export default {
   margin-right: 20px;
   color: #b0b0b0;
 }
-/* 主要内容CSS END */
 </style>

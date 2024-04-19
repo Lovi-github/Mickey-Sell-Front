@@ -33,7 +33,8 @@
           <li class="product-list" v-for="(product,i) in item" :key="i">
             <div class="pro-img">
               <router-link :to="{ path: '/goods/details', query: {productID:product.product_id} }">
-                <img :src="$target + product.product_picture" />
+<!--                <img :src="$target + product.product_picture" />-->
+                <img :src="product.product_picture.includes('http',)?product.product_picture:$target + product.product_picture" alt />
               </router-link>
             </div>
             <div class="pro-name">
@@ -200,6 +201,9 @@ export default {
 .order .content ul .pro-name {
   float: left;
   width: 380px;
+  overflow: hidden; /* 隐藏超出部分的内容 */
+  text-overflow: ellipsis; /* 当内容溢出时显示省略号 */
+  white-space: nowrap; /* 禁止文本换行 */
 }
 .order .content ul .pro-name a {
   color: #424242;

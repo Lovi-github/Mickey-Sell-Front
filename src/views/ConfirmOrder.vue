@@ -51,7 +51,7 @@
         <div class="goods-list">
           <ul>
             <li v-for="item in getCheckGoods" :key="item.id">
-              <img :src="item.productImg.includes('http:')?item.productImg:$target + item.productImg" />
+              <img :src="item.productImg.includes('http')?item.productImg:$target + item.productImg" />
               <span class="pro-name">{{item.productName}}</span>
               <span class="pro-price">{{item.price}}元 x {{item.num}}</span>
               <span class="pro-status"></span>

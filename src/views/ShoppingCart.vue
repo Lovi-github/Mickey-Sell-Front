@@ -36,7 +36,7 @@
           </div>
           <div class="pro-img">
             <router-link :to="{ path: '/goods/details', query: {productID:item.productID} }">
-              <img :src="item.productImg.includes('http:')?item.productImg:$target + item.productImg" />
+              <img :src="item.productImg.includes('http')?item.productImg:$target + item.productImg" />
             </router-link>
           </div>
           <div class="pro-name">
@@ -278,6 +278,9 @@ export default {
 .shoppingCart .content ul .pro-name {
   float: left;
   width: 380px;
+  overflow: hidden; /* 隐藏超出部分的内容 */
+  text-overflow: ellipsis; /* 当内容溢出时显示省略号 */
+  white-space: nowrap; /* 禁止文本换行 */
 }
 .shoppingCart .content ul .pro-name a {
   color: #424242;

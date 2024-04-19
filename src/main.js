@@ -20,7 +20,7 @@ Axios.interceptors.request.use(
   },
   error => {
     // 跳转error页面
-    router.push({ path: "/error" });
+    // router.push({ path: "/error" });
     return Promise.reject(error);
   }
 );
@@ -43,7 +43,7 @@ Axios.interceptors.response.use(
   },
   error => {
     // 跳转error页面
-    router.push({ path: "/error" });
+    // router.push({ path: "/error" });
     return Promise.reject(error);
   }
 );
