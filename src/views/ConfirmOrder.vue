@@ -117,6 +117,7 @@
       <div class="section-bar">
         <div class="btn">
           <router-link to="/shoppingCart" class="btn-base btn-return">返回购物车</router-link>
+          <!--这里是结算按钮-->
           <a href="javascript:void(0);" @click="addOrder" class="btn-base btn-primary">结算</a>
         </div>
       </div>
@@ -320,6 +321,8 @@ export default {
         })
         .then(res => {
           let products = this.getCheckGoods;
+          let orderData = null; //返回的订单数据
+          let totalPrice = 0; //总金额
           switch (res.data.code) {
             // “001”代表结算成功
             case "001":
@@ -330,8 +333,23 @@ export default {
               }
               // 提示结算结果
               this.notifySucceed(res.data.msg);
-              // 跳转我的订单页面
-              this.$router.push({ path: "/order" });
+
+              /*需要在这里我们再去请求支付界面*/
+              // 使用从res响应中获得的row数据打开新的支付页面
+              orderData = res.data.data; // 假设res.data中有一个orderRowData字段包含了row信息
+
+              // 遍历 orderData 列表
+              orderData.forEach((item) => {
+                // 将每个商品的 product_num 和 product_price 相乘并累加到 totalPrice 上
+                totalPrice += item.product_num * item.product_price;
+              });
+
+              // window.open(`http://localhost:3010/alipay/pay?subject=${orderData[0].order_id}&traceNo=${orderData[0].order_time}&totalAmount=${totalPrice}`); //新标签页打开
+              // 同一标签页内打开支付页面（非SPA环境）
+              window.location.href = `http://localhost:3010/alipay/pay?subject=${orderData[0].order_id}&traceNo=${orderData[0].order_time}&totalAmount=${totalPrice}`;
+
+              // 跳转我的订单页面【加了支付之后，支付会帮我们跳转】
+              // this.$router.push({ path: "/order" });
               break;
             default:
               // 提示失败信息
